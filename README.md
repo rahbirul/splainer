@@ -112,3 +112,7 @@ Thanks to all the [community contributors](https://github.com/o19s/splainer/grap
 ## License
 
 Released under [Apache 2](LICENSE.txt)
+
+## Forked by @rahbirul
+
+Forked this repo to play around.
