@@ -15,10 +15,14 @@ module.exports = function (grunt) {
   require('time-grunt')(grunt);
 
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-connect-proxy');
 
   var appConfig = grunt.file.readJSON('package.json');
 
   var serveStatic = require('serve-static');
+
+  var ES_HOST = process.env.ELASTICSEARCH_HOST;
+  var ES_PORT = process.env.ELASTICSEARCH_PORT;
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -59,6 +63,17 @@ module.exports = function (grunt) {
 
     // The actual grunt server settings
     connect: {
+      // Proxy all requests from with /es_proxy/* to Elasticsearch
+      proxies: [
+        {
+           context: '/es_proxy',
+           host: ES_HOST,
+           port: ES_PORT,
+           rewrite: {
+            '^/es_proxy': ''
+          }
+        }
+     ],
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
@@ -70,7 +85,8 @@ module.exports = function (grunt) {
         options: {
           open: false,
           middleware: function(connect) {
-            return [
+            var middlewares = [
+              require('grunt-connect-proxy/lib/utils').proxyRequest,
               serveStatic('.tmp'),
               connect().use(
                 '/node_modules',
@@ -78,6 +94,8 @@ module.exports = function (grunt) {
               ),
               serveStatic(appConfig.app)
             ];
+
+            return middlewares;
           }
         }
       },
@@ -102,12 +120,6 @@ module.exports = function (grunt) {
           open: true,
           base: '<%= yeoman.dist %>'
         }
-      }
-    },
-
-    shell: {
-      server: {
-          command: 'node server/index.js'
       }
     },
 
@@ -381,8 +393,8 @@ module.exports = function (grunt) {
       'clean:server',
       'concurrent:server',
       'postcss',
+      'configureProxies:server',
       'connect:livereload',
-      'backend',
       'watch'
     ]);
   });
@@ -427,9 +439,5 @@ module.exports = function (grunt) {
     'clean:dist',
     'copy:app',
     'copy:node_modules'
-  ]);
-
-  grunt.registerTask('backend',[
-    'shell:server'
   ]);
 };

@@ -86,8 +86,7 @@ angular.module('splain-app')
       };
 
       function setStartUrl () {
-        // Using $location object breaks the tests.
-        return window.location.protocol + '//' + window.location.hostname + ':9001/tmdb/_search?stored_fields=*';
+        return '/es_proxy/<my-index>/_search?stored_fields=*';
       }
     }
   ]);
