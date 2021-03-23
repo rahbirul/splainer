@@ -18,8 +18,11 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-connect-proxy');
 
   var appConfig = grunt.file.readJSON('package.json');
-//
+
   var serveStatic = require('serve-static');
+
+  var ES_HOST = process.env.ELASTICSEARCH_HOST;
+  var ES_PORT = process.env.ELASTICSEARCH_PORT;
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -60,11 +63,15 @@ module.exports = function (grunt) {
 
     // The actual grunt server settings
     connect: {
+      // Proxy all requests from with /es_proxy/* to Elasticsearch
       proxies: [
         {
            context: '/es_proxy',
-           host: 'localhost',
-           port: 9001
+           host: ES_HOST,
+           port: ES_PORT,
+           rewrite: {
+            '^/es_proxy': ''
+          }
         }
      ],
       options: {
@@ -113,12 +120,6 @@ module.exports = function (grunt) {
           open: true,
           base: '<%= yeoman.dist %>'
         }
-      }
-    },
-
-    shell: {
-      server: {
-          command: 'node server/index.js'
       }
     },
 
@@ -394,7 +395,6 @@ module.exports = function (grunt) {
       'postcss',
       'configureProxies:server',
       'connect:livereload',
-      'backend',
       'watch'
     ]);
   });
@@ -439,9 +439,5 @@ module.exports = function (grunt) {
     'clean:dist',
     'copy:app',
     'copy:node_modules'
-  ]);
-
-  grunt.registerTask('backend',[
-    'shell:server'
   ]);
 };
