@@ -15,9 +15,10 @@ module.exports = function (grunt) {
   require('time-grunt')(grunt);
 
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-connect-proxy');
 
   var appConfig = grunt.file.readJSON('package.json');
-
+//
   var serveStatic = require('serve-static');
 
   // Define the configuration for all the tasks
@@ -59,6 +60,13 @@ module.exports = function (grunt) {
 
     // The actual grunt server settings
     connect: {
+      proxies: [
+        {
+           context: '/es_proxy',
+           host: 'localhost',
+           port: 9001
+        }
+     ],
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
@@ -70,7 +78,8 @@ module.exports = function (grunt) {
         options: {
           open: false,
           middleware: function(connect) {
-            return [
+            var middlewares = [
+              require('grunt-connect-proxy/lib/utils').proxyRequest,
               serveStatic('.tmp'),
               connect().use(
                 '/node_modules',
@@ -78,6 +87,8 @@ module.exports = function (grunt) {
               ),
               serveStatic(appConfig.app)
             ];
+
+            return middlewares;
           }
         }
       },
@@ -381,6 +392,7 @@ module.exports = function (grunt) {
       'clean:server',
       'concurrent:server',
       'postcss',
+      'configureProxies:server',
       'connect:livereload',
       'backend',
       'watch'
