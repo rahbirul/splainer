@@ -105,6 +105,12 @@ module.exports = function (grunt) {
       }
     },
 
+    shell: {
+      server: {
+          command: 'node server/index.js'
+      }
+    },
+
     // Make sure code styles are up to par and there are no obvious mistakes
     jshint: {
       options: {
@@ -376,6 +382,7 @@ module.exports = function (grunt) {
       'concurrent:server',
       'postcss',
       'connect:livereload',
+      'backend',
       'watch'
     ]);
   });
@@ -420,5 +427,9 @@ module.exports = function (grunt) {
     'clean:dist',
     'copy:app',
     'copy:node_modules'
+  ]);
+
+  grunt.registerTask('backend',[
+    'shell:server'
   ]);
 };

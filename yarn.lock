@@ -106,6 +106,11 @@ ansi-regex@^2.0.0:
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-2.1.1.tgz#c3b33ab5ee360d86e0e628f0468ae7ef27d654df"
   integrity sha1-w7M6te42DYbg5ijwRorn7yfWVN8=
 
+ansi-regex@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-4.1.0.tgz#8b9f8f08cf1acb843756a839ca8c7e3168c51997"
+  integrity sha512-1apePfXM1UOSqw0o9IiFAovVz9M5S1Dg+4TrDwfMewQ6p/rmMueb7tWZjQ1rx4Loy1ArBggoqGpfqqdI4rondg==
+
 ansi-styles@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-2.2.1.tgz#b432dd3358b634cf75e1e4664368240533c1ddbe"
@@ -1359,6 +1364,11 @@ eventemitter3@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-3.1.0.tgz#090b4d6cdbd645ed10bf750d4b5407942d7ba163"
 
+eventemitter3@^4.0.0:
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-4.0.7.tgz#2de9b68f6528d5644ef5c59526a1b4a07306169f"
+  integrity sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==
+
 events@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/events/-/events-1.1.1.tgz#9ebdb7635ad099c70dcc4c2a1f5004288e8bd924"
@@ -2090,6 +2100,15 @@ grunt-postcss@^0.9.0:
     diff "^3.0.0"
     postcss "^6.0.11"
 
+grunt-shell@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/grunt-shell/-/grunt-shell-3.0.1.tgz#24e783901543c7269980d534902bedfb94e7ec9f"
+  integrity sha512-C8eR4frw/NmIFIwSvzSLS4wOQBUzC+z6QhrKPzwt/tlaIqlzH35i/O2MggVOBj2Sh1tbaAqpASWxGiGsi4JMIQ==
+  dependencies:
+    chalk "^2.4.1"
+    npm-run-path "^2.0.0"
+    strip-ansi "^5.0.0"
+
 grunt-svgmin@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/grunt-svgmin/-/grunt-svgmin-6.0.0.tgz#5745618dfc9453f5aca6daecffa7701165f629c0"
@@ -2316,6 +2335,15 @@ http-proxy@^1.13.0:
   resolved "https://registry.yarnpkg.com/http-proxy/-/http-proxy-1.17.0.tgz#7ad38494658f84605e2f6db4436df410f4e5be9a"
   dependencies:
     eventemitter3 "^3.0.0"
+    follow-redirects "^1.0.0"
+    requires-port "^1.0.0"
+
+http-proxy@^1.18.1:
+  version "1.18.1"
+  resolved "https://registry.yarnpkg.com/http-proxy/-/http-proxy-1.18.1.tgz#401541f0534884bbf95260334e72f88ee3976549"
+  integrity sha512-7mz/721AbnJwIVbnaSv1Cz3Am0ZLT/UBwkC92VlxhXv/k/BBQfM2fXElQNC27BVGr0uwUpplYPQM9LnaBMR5NQ==
+  dependencies:
+    eventemitter3 "^4.0.0"
     follow-redirects "^1.0.0"
     requires-port "^1.0.0"
 
@@ -3267,9 +3295,9 @@ neo-async@^2.6.0:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
 
-"ng-json-explorer@http://github.com/o19s/ng-json-explorer":
+"ng-json-explorer@https://github.com/o19s/ng-json-explorer":
   version "1.3.6"
-  resolved "http://github.com/o19s/ng-json-explorer#23debd0589680696d6e253c813a01827c5d88b3e"
+  resolved "https://github.com/o19s/ng-json-explorer#23debd0589680696d6e253c813a01827c5d88b3e"
 
 ngmin@~0.4.0:
   version "0.4.1"
@@ -4394,10 +4422,10 @@ spdx-license-ids@^3.0.0:
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.5.tgz#3694b5804567a458d3c8045842a6358632f62654"
   integrity sha512-J+FWzZoynJEXGphVIS+XEh3kFSjZX/1i9gFBaWQcB+/tmpe2qUsSBABpcxqxnAxFdiUFEgAX1bjYGQvIZmoz9Q==
 
-splainer-search@2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/splainer-search/-/splainer-search-2.6.0.tgz#56d7610e4f63c8a50e04d5ae772b7afad273892e"
-  integrity sha512-H77YRKZWhj5LS5jWR9zzbG/lULIDAwSMt9Fxs4a5i8vft7vG4At5GfRc/RW4eQnr+4oPRbC6n3y28MYzhUM+og==
+splainer-search@2.6.3:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/splainer-search/-/splainer-search-2.6.3.tgz#278cf873413b3ce0c9e1d473eaee250ba31034c0"
+  integrity sha512-1u9EFshQjqlbGTJKnxBZ21cgm1GWRRCZBaiujSMAsrpY7q6Nprrf8flLgXEmF93vqHvRIk69LKxjvkIiXMvBjw==
   dependencies:
     angular "^1.7.9"
     urijs "~1.16.1"
@@ -4541,6 +4569,13 @@ strip-ansi@^3.0.0:
   integrity sha1-ajhfuIU9lS1f8F0Oiq+UJ43GPc8=
   dependencies:
     ansi-regex "^2.0.0"
+
+strip-ansi@^5.0.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-5.2.0.tgz#8c9a536feb6afc962bdfa5b104a5091c1ad9c0ae"
+  integrity sha512-DuRs1gKbBqsMKIZlrffwlug8MHkcnpjs5VPmL1PAh+mA30U0DTotfDZ0d2UUsXpPmPmMMJ6W773MaA3J+lbiWA==
+  dependencies:
+    ansi-regex "^4.1.0"
 
 strip-bom@^2.0.0:
   version "2.0.0"

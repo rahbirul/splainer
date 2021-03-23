@@ -20,7 +20,9 @@ angular.module('splain-app')
       $scope.start.esSettings = settingsStoreSvc.settings.es;
       $scope.start.whichEngine = settingsStoreSvc.settings.whichEngine;
 
-
+      if ($scope.start.esSettings.searchUrl === "") {
+        $scope.start.esSettings.startUrl = setStartUrl();
+      }
 
       var search = function() {
         $scope.search.search()
@@ -82,5 +84,10 @@ angular.module('splain-app')
 
         runEsSearch(settings);
       };
+
+      function setStartUrl () {
+        // Using $location object breaks the tests.
+        return window.location.protocol + '//' + window.location.hostname + ':9001/tmdb/_search?stored_fields=*';
+      }
     }
   ]);
