@@ -107,7 +107,7 @@ module.exports = function (grunt) {
 
     shell: {
       server: {
-          command: 'ELASTICSEARCH_HOST=http://quepid-elasticsearch.dev.o19s.com:9206 node server/index.js'
+          command: 'node server/index.js'
       }
     },
 
