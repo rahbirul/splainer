@@ -20,9 +20,9 @@ module.exports = function (grunt) {
   var appConfig = grunt.file.readJSON('package.json');
 
   var serveStatic = require('serve-static');
+  var url = require('url');
 
-  var ES_HOST = process.env.ELASTICSEARCH_HOST;
-  var ES_PORT = process.env.ELASTICSEARCH_PORT;
+  var parsedUrl = new url.URL(process.env.ELASTICSEARCH_URL);
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -67,8 +67,8 @@ module.exports = function (grunt) {
       proxies: [
         {
            context: '/es_proxy',
-           host: ES_HOST,
-           port: ES_PORT,
+           host: parsedUrl.hostname,
+           port: parsedUrl.port,
            rewrite: {
             '^/es_proxy': ''
           }
