@@ -22,7 +22,21 @@ module.exports = function (grunt) {
   var serveStatic = require('serve-static');
   var url = require('url');
 
-  var parsedUrl = new url.URL(process.env.ELASTICSEARCH_URL);
+  var esHost = function() {
+    if (!process.env.ELASTICSEARCH_URL) {
+      return 'quepid-elasticsearch.dev.o19s.com';
+    }
+
+    return new url.URL(process.env.ELASTICSEARCH_URL).hostname;
+  }
+
+  var esPort = function() {
+    if (!process.env.ELASTICSEARCH_URL) {
+      return '9206';
+    }
+
+    return new url.URL(process.env.ELASTICSEARCH_URL).port;
+  }
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -67,8 +81,8 @@ module.exports = function (grunt) {
       proxies: [
         {
            context: '/es_proxy',
-           host: parsedUrl.hostname,
-           port: parsedUrl.port,
+           host: esHost(),
+           port: esPort(),
            rewrite: {
             '^/es_proxy': ''
           }
